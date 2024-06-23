@@ -1,22 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _coinsText;
+    [SerializeField] private Player _player;
+    [SerializeField] private TileGenerator _tileGenerator;
     private int _coinsCount;
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+        _player.DieEvent.AddListener(LoseHandler);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LoseHandler()
     {
-        
+        print("Конец игры");
+        _tileGenerator.SetEnabling(false);
     }
 
     public void AddCoin()
